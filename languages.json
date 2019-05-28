@@ -180,6 +180,29 @@
             "submit": "curl -u admin:weshouldchangethis -X PUT --data-urlencode source@submit.in \"http://lamp.ms.wits.ac.za:8080/SnakeDBService/agents/0/~firstname~_~lastname~/~userid~/1/\" >out.txt 2>err.txt",
 	    "run": "echo 'true'"
         }
-    }
-}
+    },
 
+
+"16": {
+        "name": "SQL",
+        "extension": "sql",
+
+	 "compile" :{
+            "compile": "mysql -u root -pstudent  <<- 'EOF' create database ~userid~_~firstname~_~lastname~ EOF"
+        },
+        "compile" :{
+            "compile": "mysql -u root -pstudent  ~userid~_~firstname~_~lastname~ < ~sourcefile~  >out.txt"
+        },
+        "compile_tests" : {
+            "compile" : "out.txt"
+        },
+        "commands": {
+            "run": "mysql -u root -pstudent ~userid~_~firstname~_~lastname~  ~input_noex~.txt"
+       }
+
+
+
+    }
+    
+    
+}
